@@ -1,0 +1,106 @@
+# docker build -t hlds_deploy -f deploy .
+# docker run -it --name="hlds" -p 27015:27015 -p 27015:27015/udp hlds_deploy
+
+FROM hlds_build
+
+# ReHLDS
+RUN rsync -a /opt/ReHLDS/publish/bin/linux32/ /opt/steam/hlds/
+
+# ReGameDLL_CS
+RUN cp /opt/ReGameDLL_CS/publish/bin/linux32/cstrike/dlls/cs.so /opt/steam/hlds/cstrike/dlls/
+RUN rsync -a /opt/ReGameDLL_CS/publish/dist/ /opt/steam/hlds/cstrike/
+
+# MetamodR
+RUN mkdir -p /opt/steam/hlds/cstrike/addons/metamod
+RUN cp /opt/Metamod-R/publish/addons/metamod/metamod_i386.so /opt/steam/hlds/cstrike/addons/metamod
+RUN sed -i 's/dlls\/cs\.so/addons\/metamod\/metamod_i386.so/g' /opt/steam/hlds/cstrike/liblist.gam
+
+# ReSemiclip
+RUN rsync -a /opt/ReSemiclip/publish/addons/ /opt/steam/hlds/cstrike/addons/resemiclip
+RUN echo 'linux addons/resemiclip/resemiclip_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
+
+# ReUnion
+RUN mkdir /opt/steam/hlds/cstrike/addons/reunion
+RUN cp /opt/ReUnion/publish/bin/Linux/reunion_mm_i386.so /opt/steam/hlds/cstrike/addons/reunion/
+RUN cp /opt/ReUnion/publish/reunion.cfg /opt/steam/hlds/cstrike/
+# generate salt
+RUN sed -i "s/^SteamIdHashSalt =.*/SteamIdHashSalt = $(head /dev/urandom | tr -dc 'a-z0-9' | head -c 32)/" /opt/steam/hlds/cstrike/reunion.cfg
+RUN echo 'linux addons/reunion/reunion_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
+
+# ReVoice Plus
+RUN mkdir /opt/steam/hlds/cstrike/addons/revoice
+RUN cp /opt/ReVoice/publish/revoice_plus_mm.so /opt/steam/hlds/cstrike/addons/revoice/
+RUN echo 'linux addons/revoice/revoice_plus_mm.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
+
+# Hitbox Fixer
+RUN mkdir /opt/steam/hlds/cstrike/addons/hitboxfixer
+RUN rsync -a /opt/HitboxFixer/publish/ /opt/steam/hlds/cstrike/addons/hitboxfixer/
+RUN echo 'linux addons/hitboxfixer/hitbox_fix_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
+
+
+#### Install Plugins from repo
+# SpeedRun Detector
+#RUN echo 'linux addons/resrdetector/resrdetector_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
+# WH Blocker
+#RUN echo 'linux addons/whblocker/whblocker_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
+# Yapb Bot
+#RUN echo 'linux addons/yapb/bin/yapb.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
+
+
+# AMX Mod X
+RUN rsync -a /opt/AMXModX/publish/addons/ /opt/steam/hlds/cstrike/addons/
+RUN echo 'linux addons/amxmodx/dlls/amxmodx_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
+# fix a bug in csstats
+RUN sed -i 's/csstats\.dat/csstats\.amxx/' /opt/steam/hlds/cstrike/addons/amxmodx/configs/core.ini
+
+
+# Install ReAPI
+RUN rsync -a /opt/ReAPI/publish/addons/amxmodx/ /opt/steam/hlds/cstrike/addons/amxmodx/
+RUN echo 'reapi' >> /opt/steam/hlds/cstrike/addons/amxmodx/configs/modules.ini
+
+
+
+# switch to userspace and workspace
+WORKDIR /opt/steam/hlds
+RUN chown -R steam:steam .
+USER steam
+
+# Copy default config
+COPY --chmod=0755 --chown=steam:steam cstrike cstrike
+
+
+
+# compile SMA's
+WORKDIR /opt/steam/hlds/cstrike/addons/amxmodx/scripting
+RUN ./compile.sh
+RUN chmod +x compiled/*
+RUN cp -rf compiled/* ../plugins/ 
+
+WORKDIR /opt/steam/hlds
+RUN chmod +x hlds_run hlds_linux
+
+RUN echo 10 > steam_appid.txt
+
+EXPOSE 27015
+EXPOSE 27015/udp
+
+# Start server
+ENTRYPOINT [ \
+    "./hlds_run", \
+    "-timeout 3", \
+    "-pingboost 3", \
+    "-game cstrike", \
+    "+map de_dust2", \
+    "-maxplayers 32", \
+    "-insecure", \
+    "+sys_ticrate 1000", \
+    "-developer 1", \
+    "-strictportbind", \
+    "-port 27015", \
+    "-debug" \
+]
+
+
+#debug
+#WORKDIR /opt/steam/hlds/cstrike/addons
+#SHELL ["/bin/bash", "-c"]

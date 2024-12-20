@@ -1,0 +1,17 @@
+[en]
+DR_TAG = ^4*
+DR_WARNING = ^Hello ^3%n^1!
+DR_DEMO = ^1demo recording started ^3%s.dem
+DR_TIME = ^1Recording time: ^4%s. ^1Date: ^4%s
+
+[ru]
+DR_TAG = ^4*
+DR_WARNING = ^1Внимание ^3%n^1!
+DR_DEMO = ^1Идет запись демо ^3%s.dem
+DR_TIME = ^1Время записи: ^4%s. ^1Дата: ^4%s
+
+[ua]
+DR_TAG = ^4*
+DR_WARNING = ^1Увага ^3%n^1!
+DR_DEMO = ^1Йде запис демо ^3%s.dem
+DR_TIME = ^1Час запису: ^4%s. ^1Дата: ^4%s

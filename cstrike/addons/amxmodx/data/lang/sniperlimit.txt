@@ -1,0 +1,63 @@
+"Sniper Limit (AWP/Auto)"
+fr:"Limiteur de Snipes (AWP/Auto)"
+
+
+"CAN'T BUY! Not enough people in one team to allow AWP's!"
+fr:"IMPOSSIBLE D'ACHETER ! Pas assez de joueurs dans une equipe pour autoriser l'AW/M !"
+
+"CAN'T BUY! Too many people on your team have AWP's!"
+fr:"IMPOSSIBLE D'ACHETER ! Trop de joueurs dans votre equipe ont un AW/M !"
+
+"CAN'T BUY! You are on the winning team and can't use AWP's!"
+fr:"IMPOSSIBLE D'ACHETER ! Vous etes l'equipe gagnante et ne pouvez pas utiliser l'AW/M !"
+
+"CAN'T BUY! Not enough people in one team to allow AUTO's!"
+fr:"IMPOSSIBLE D'ACHETER ! Pas assez de joueurs dans une equipe pour autoriser les Snipers Auto. !"
+
+"CAN'T BUY! Too many people on your team have AUTO's!"
+fr:"IMPOSSIBLE D'ACHETER ! Trop de joueurs dans votre equipe ont un Sniper Auto. !"
+
+"CAN'T BUY! You are on the winning team and cannot use AUTO's!"
+fr:"IMPOSSIBLE D'ACHETER ! Vous etes l'equipe gagnante et ne pouvez pas utiliser les Snipers Auto. !"
+
+
+"Sorry, it's not possible to use the rebuy command on this server!"
+fr:"Desole, il n'est pas possible d'utiliser la commande de re-achat !"
+
+
+"CAN'T CARRY! Not enough people in one team to allow AWP's!"
+fr:"IMPOSSIBLE A GARDER ! Pas assez de joueurs dans une equipe pour autoriser l'AW/M !"
+
+"CAN'T CARRY! Too many people on your team have AWP's!"
+fr:"IMPOSSIBLE A GARDER ! Trop de joueurs dans votre equipe ont un AW/M !"
+
+"CAN'T CARRY! You are on the winning team and can't use AWP's!"
+fr:"IMPOSSIBLE A GARDER ! Vous etes l'equipe gagnante et ne pouvez pas utiliser l'AW/M !"
+
+"CAN'T CARRY! Not enough people in one team to allow AUTO's!"
+fr:"IMPOSSIBLE A GARDER ! Pas assez de joueurs dans une equipe pour autoriser les Snipers Auto. !"
+
+"CAN'T CARRY! Too many people on your team have AUTO's!"
+fr:"IMPOSSIBLE A GARDER ! Trop de joueurs dans votre equipe ont un Sniper Auto. !"
+
+"CAN'T CARRY! You are on the winning team and cannot use AUTO's!"
+fr:"IMPOSSIBLE A GARDER ! Vous etes l'equipe gagnante et ne pouvez pas utiliser les Snipers Auto. !"
+
+
+"CAN'T PICK UP! Not enough people in one team to allow AWP's!"
+fr:"IMPOSSIBLE A RAMASSER ! Pas assez de joueurs dans une equipe pour autoriser l'AW/M !"
+
+"CAN'T PICK UP! Too many people on your team have AWP's!"
+fr:"IMPOSSIBLE A RAMASSER ! Trop de joueurs dans votre equipe ont un AW/M !"
+
+"CAN'T PICK UP! You are on the winning team and can't use AWP's!"
+fr:"IMPOSSIBLE A RAMASSER ! Vous etes l'equipe gagnante et ne pouvez pas utiliser l'AW/M !"
+
+"CAN'T PICK UP! Not enough people in one team to allow AUTO's!"
+fr:"IMPOSSIBLE A RAMASSER ! Pas assez de joueurs dans une equipe pour autoriser les Snipers Auto. !"
+
+"CAN'T PICK UP! Too many people on your team have AUTO's!"
+fr:"IMPOSSIBLE A RAMASSER ! Trop de joueurs dans votre equipe ont un Sniper Auto. !"
+
+"CAN'T PICK UP! You are on the winning team and cannot use AUTO's!"
+fr:"IMPOSSIBLE A RAMASSER ! Vous etes l'equipe gagnante et ne pouvez pas utiliser les Snipers Auto. !"

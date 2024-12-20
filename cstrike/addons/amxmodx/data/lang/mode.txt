@@ -1,0 +1,178 @@
+[ru]
+MODE_PREFIX = ^1[^4Mode^1]
+MODE_MESSAGE_MAP_OPENED = Карта открыта
+MODE_MESSAGE_MAP_CLOSED = Карта закрыта
+MODE_MESSAGE_TOUCH = К сожалению^3 Проход закрыт^4,^1 по причине мало игроков.
+MODE_NOT_USED = На этой карте отсутствует^3 /mode^1 режим.
+MODE_ADMIN_BUSY_CHANGE = К сожалению^4,^1 админ^3 %s^1 использует эту команду.
+MODE_VOTE = Сейчас начнется Голосование.
+MODE_START_VOTE = Идет голосование.
+MODE_WAIT_NEW_ROUND = Дождитесь нового раунда.
+MODE_ADMIN_CHANGED = Админ^3 %L^1 карту в следующем раунде.
+MODE_ADMIN_CHANGED_ADMINS = ^3%s^1 %L карту в следующем раунде^3 /change.
+MODE_ADMIN_CLOSED = закроет
+MODE_ADMIN_OPENED = откроет
+MODE_VOTE_CLOSED = закрытие
+MODE_VOTE_OPENED = открытие
+MODE_RESULT_CLOSED = закрыта
+MODE_RESULT_OPENED = открыта
+MODE_TITLE_CLOSED = Закрыть
+MODE_TITLE_OPENED = Открыть
+MODE_VOTE_LEFT = Будет доступно через^3 %s.
+MODE_SECOND = ^1секунд
+MODE_SECUNDE = ^1секунда
+MODE_SECONDS = ^1секунды
+MODE_MINUT = ^1минут
+MODE_MINUTE = ^1минута
+MODE_MINUTES = ^1минуты
+MODE_AND = %s и^3 %s
+MODE_VOTED = ^3%s^1 написал ^3/mode.^1 Проголосовали за %L карты [^3%d^1/^3%d^1]
+MODE_VOTE_ALREADY = Вы уже голосовали. Всего голосов [^3%d^1/^3%d^1]
+MODE_MESSAGE_VOTE_START = Голосование начнется через^3 %d ^1секунд.
+MODE_VOTE_YES = Да
+MODE_VOTE_NO = Нет
+MODE_VOTE_FORMAT = ^3%s ^1:  [^4 %L ^1]
+MODE_VOTE_RESULT = Согласны ^4-^1 [^3%d^1] ^4|^1 Против ^4-^1 [^3%d^1] ^4|^1 Всего ^4-^1 [^3%d^1]
+MODE_VOTE_SUCCESS = Карта будет^3 %L^1 в следующем раунде.
+MODE_VOTE_FAILED = Неудачное голосование.
+MODE_VOTE_POSTSTART_MENU = \wОпрос:\y %L карту?^n^n\r1.\w Да^n\r2.\w Нет
+MODE_VOTE_PRESTART_MENU = \dОпрос: %L карту?^nначнется через %d секунд^n^n1. Да^n2. Нет
+
+MODE_DEV_YES = Да
+MODE_DEV_NO = Нет
+
+MODE_DEV_HIDE = \dСкрыть
+MODE_DEV_SHOW = \yПоказать
+
+MODE_DEV_SAVE = Сохранить
+MODE_DEV_CHANGE = Изменить
+
+MODE_DEV_SOLID = \wПлотность:\y
+MODE_DEV_SOLID_D = \dПлотность:
+
+MODE_DEV_FAILED_1 = * Блок не найден *
+MODE_DEV_FAILED_2 = * Этот блок уже скопирован *
+MODE_DEV_FAILED_3 = * Вы еще не копировали блок *
+MODE_DEV_FAILED_4 = * Для начала вы должны создать блок *
+MODE_DEV_FAILED_5 = * Вы не закончили Создание/Изменение предыдущего блока *
+
+MODE_DEV_SUCCESS_1 = * Блок удален *
+MODE_DEV_SUCCESS_2 = * Блок скопирован *
+MODE_DEV_SUCCESS_3 = * Успешно сохранено *
+MODE_DEV_SUCCESS_4 = * Свойства блока сохранены *
+MODE_DEV_SUCCESS_5 = * Блок готов для изменения *
+MODE_DEV_SUCCESS_6 = * Установлено свойство: "%s" *
+
+MODE_DEV_TITLE = Надпись
+MODE_DEV_WALL = Стенка
+MODE_DEV_NULL = Пусто
+
+MODE_DEV_COORD = Координаты
+MODE_DEV_ANGLES = Углы
+MODE_DEV_SIZE = Размер плотности
+MODE_DEV_MINS = Размер плотности \rMins
+MODE_DEV_MAXS = Размер плотности \rMaxs
+MODE_DEV_SPRITE = Размер спрайта
+
+MODE_DEV_MENU_MAIN = \yСоздание блока^n\dБлоки: %d^n^n\r1.%s Создать блок^n\r2.%s Удалить блок^n\r3.%s %L блок^n^n\r4.%s Свойства^n\r5.\w Конфигурации^n^n\r6.%s Скопировать^n\r7.%s Вставить^n^n^n^n\r9.%s Сохранить всё^n\r0.\w Выход
+MODE_DEV_MENU_CONFIG = \yСоздание блока \d>>\w Конфигурации^n^n\r1. %L %s^n\r2.%s Стенки: %L^n\r3.\w Онлайн \rLow\w:\y %d^n\r4.\w Онлайн \rHigh\w:\y %d^n\r5.\w Noclip:\y %L^n^n\r6.\w Расширенные свойства:\y %L^n^n^n^n^n^n^n^n^n\r0.\w Назад
+
+MODE_DEV_MENU_TITLE = \yСоздание блока \d>>\w Настройки^n
+MODE_DEV_MENU_COORD = ^nЛокация:\y   %0.1f   %0.1f   %0.1f^n^n\r1.\w X\y++^n\r2.\w Y\y++^n\r3.\w Z\y++^n^n\r4.\w X\r--^n\r5.\w Y\r--^n\r6.\w Z\r--^n^n\r7.\w Интервал:\y x%0.1f
+MODE_DEV_MENU_ANGLES = ^nУглы:\y   %0.1f   %0.1f   %0.1f^n^n\r1.\w X\y++^n\r2.\w Y\y++^n\r3.\w Z\y++^n^n\r4.\w X\r--^n\r5.\w Y\r--^n\r6.\w Z\r--^n^n\r7.\w Интервал:\y x%0.1f
+MODE_DEV_MENU_SIZE = ^nРазмеры:   \w[\r Mins \y   %0.1f   %0.1f   %0.1f   \w]\t[\r Maxs\y   %0.1f   %0.1f   %0.1f   \w]^n^n\r1.\w X\y++^n\r2.\w Y\y++^n\r3.\w Z\y++^n^n\r4.\w X\r--^n\r5.\w Y\r--^n\r6.\w Z\r--^n^n\r7.\w Интервал:\y x%0.1f
+MODE_DEV_MENU_ADDON = ^n\r8.\w Действие:\y %L^n\r9.\w Спрайт:\y %L^n^n\r0.\w Назад
+
+MODE_DEV_MENU_SCALE_1 = ^nСкайл:\y   %0.3f^n^n\r1.\w %0.1f\y++^n\r2.\w %0.1f\r--^n^n^n^n^n^n^n\r7.\w Интервал:\y x%0.1f
+MODE_DEV_MENU_SCALE_2 = ^nСкайл:\y   %0.3f^n^n\r1.\w %0.2f\y++^n\r2.\w %0.2f\r--^n^n^n^n^n^n^n\r7.\w Интервал:\y x%0.2f
+MODE_DEV_MENU_SCALE_3 = ^nСкайл:\y   %0.3f^n^n\r1.\w %0.3f\y++^n\r2.\w %0.3f\r--^n^n^n^n^n^n^n\r7.\w Интервал:\y x%0.3f
+
+
+[en]
+MODE_PREFIX = ^1[^4Mode^1]
+MODE_MESSAGE_MAP_OPENED = Map opened
+MODE_MESSAGE_MAP_CLOSED = Map closed
+MODE_MESSAGE_TOUCH = I'm sorry^3 Path closed^4,^1 in reason not enough players.
+MODE_NOT_USED = On the map missing target^3 /mode^1 mode.
+MODE_ADMIN_BUSY_CHANGE = I'm sorry^4,^1 admin^3 %s^1 uses the command.
+MODE_VOTE = Now start the voting.
+MODE_START_VOTE = The voting is going on.
+MODE_WAIT_NEW_ROUND = Wait for next a new round.
+MODE_ADMIN_CHANGED = Admin^3 %L^1 map in the next round.
+MODE_ADMIN_CHANGED_ADMINS = ^3%s^1 %L map in the next round /change.
+MODE_ADMIN_CLOSED = closes
+MODE_ADMIN_OPENED = opens
+MODE_VOTE_CLOSED = closing
+MODE_VOTE_OPENED = opening
+MODE_RESULT_CLOSED = closed
+MODE_RESULT_OPENED = open
+MODE_TITLE_CLOSED = Close
+MODE_TITLE_OPENED = Open
+MODE_VOTE_LEFT = Will be available through^3 %s.
+MODE_SECOND = ^1seconds
+MODE_SECUNDE = ^1second
+MODE_SECONDS = ^1seconds
+MODE_MINUT = ^1minutes
+MODE_MINUTE = ^1minute
+MODE_MINUTES = ^1minutes
+MODE_AND = %s и^3 %s
+MODE_VOTED = ^3%s^1 said ^3/mode.^1 Voted for %L map [^3%d^1/^3%d^1]
+MODE_VOTE_ALREADY = You have already voted. Total votes [^3%d^1/^3%d^1]
+MODE_MESSAGE_VOTE_START = Voting will begin in^3 %d ^1seconds.
+MODE_VOTE_YES = Yes
+MODE_VOTE_NO = No
+MODE_VOTE_FORMAT = ^3%s ^1:  [^4 %L ^1]
+MODE_VOTE_RESULT = Yes ^4-^1 [^3%d^1] ^4|^1 No ^4-^1 [^3%d^1] ^4|^1 Total ^4-^1 [^3%d^1]
+MODE_VOTE_SUCCESS = Map will^3 %L^1 in the next round.
+MODE_VOTE_FAILED = Voting failed.
+MODE_VOTE_POSTSTART_MENU = \wQuestion:\y %L map?^n^n\r1.\w Yes^n\r2.\w No
+MODE_VOTE_PRESTART_MENU = \dQuestion: %L map?^nwill begin in %d seconds^n^n1. Yes^n2. No
+
+MODE_DEV_YES = Yes
+MODE_DEV_NO = No
+
+MODE_DEV_HIDE = \dHide
+MODE_DEV_SHOW = \yShow
+
+MODE_DEV_SAVE = Save
+MODE_DEV_CHANGE = Change
+
+MODE_DEV_SOLID = \wSolid:\y
+MODE_DEV_SOLID_D = \dSolid:
+
+MODE_DEV_FAILED_1 = * Block not found *
+MODE_DEV_FAILED_2 = * This block already copy *
+MODE_DEV_FAILED_3 = * You as far back not copied block *
+MODE_DEV_FAILED_4 = * First you need to create the block *
+MODE_DEV_FAILED_5 = * You haven't completed Create/Change previous block *
+
+MODE_DEV_SUCCESS_1 = * Block deleted *
+MODE_DEV_SUCCESS_2 = * Block copied *
+MODE_DEV_SUCCESS_3 = * Success saved *
+MODE_DEV_SUCCESS_4 = * The block properties saved *
+MODE_DEV_SUCCESS_5 = * The block is ready for changes *
+MODE_DEV_SUCCESS_6 = * Installed the property: "%s" *
+
+MODE_DEV_TITLE = Description
+MODE_DEV_WALL = Wall
+MODE_DEV_NULL = Null
+
+MODE_DEV_COORD = Coordinates
+MODE_DEV_ANGLES = Angles
+MODE_DEV_SIZE = The block size
+MODE_DEV_MINS = The block size \rMins
+MODE_DEV_MAXS = The block size \rMaxs
+MODE_DEV_SPRITE = Size sprite
+
+MODE_DEV_MENU_MAIN = \yCreation the block^n\dБлоки: %d^n^n\r1.%s Create block^n\r2.%s Remove block^n\r3.%s %L block^n^n\r4.%s Properties^n\r5.\w Configuration^n^n\r6.%s Copy^n\r7.%s Paste^n^n^n^n\r9.%s Save all^n\r0.\w Exit
+MODE_DEV_MENU_CONFIG = \yCreation the block \d>>\w Configuration^n^n\r1. %L %s^n\r2.%s Wall's: %L^n\r3.\w Online \rLow\w:\y %d^n\r4.\w Online \rHigh\w:\y %d^n\r5.\w Noclip:\y %L^n^n\r6.\w Advanced property:\y %L^n^n^n^n^n^n^n^n^n\r0.\w Back
+
+MODE_DEV_MENU_TITLE = \yCreation the block \d>>\w Settings^n
+MODE_DEV_MENU_COORD = ^nLocation:\y   %0.1f   %0.1f   %0.1f^n^n\r1.\w X\y++^n\r2.\w Y\y++^n\r3.\w Z\y++^n^n\r4.\w X\r--^n\r5.\w Y\r--^n\r6.\w Z\r--^n^n\r7.\w Interval:\y x%0.1f
+MODE_DEV_MENU_ANGLES = ^nAngles:\y   %0.1f   %0.1f   %0.1f^n^n\r1.\w X\y++^n\r2.\w Y\y++^n\r3.\w Z\y++^n^n\r4.\w X\r--^n\r5.\w Y\r--^n\r6.\w Z\r--^n^n\r7.\w Interval:\y x%0.1f
+MODE_DEV_MENU_SIZE = ^nSize:   \w[\r Mins \y   %0.1f   %0.1f   %0.1f   \w]\t[\r Maxs\y   %0.1f   %0.1f   %0.1f   \w]^n^n\r1.\w X\y++^n\r2.\w Y\y++^n\r3.\w Z\y++^n^n\r4.\w X\r--^n\r5.\w Y\r--^n\r6.\w Z\r--^n^n\r7.\w Interval:\y x%0.1f
+MODE_DEV_MENU_ADDON = ^n\r8.\w Action:\y %L^n\r9.\w Sprite:\y %L^n^n\r0.\w Back
+
+MODE_DEV_MENU_SCALE_1 = ^nScale:\y   %0.3f^n^n\r1.\w %0.1f\y++^n\r2.\w %0.1f\r--^n^n^n^n^n^n^n\r7.\w Interval:\y x%0.1f
+MODE_DEV_MENU_SCALE_2 = ^nScale:\y   %0.3f^n^n\r1.\w %0.2f\y++^n\r2.\w %0.2f\r--^n^n^n^n^n^n^n\r7.\w Interval:\y x%0.2f
+MODE_DEV_MENU_SCALE_3 = ^nScale:\y   %0.3f^n^n\r1.\w %0.3f\y++^n\r2.\w %0.3f\r--^n^n^n^n^n^n^n\r7.\w Interval:\y x%0.3f

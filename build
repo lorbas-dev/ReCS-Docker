@@ -1,0 +1,290 @@
+# docker build -t hlds_build -f build .
+FROM debian:11-slim
+#FROM debian:stable-slim
+
+ENV LANG=en_US.utf8
+ENV LC_ALL=en_US.UTF-8
+ENV CPU_MHZ=2300
+
+ARG steamcmd_url="https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
+
+
+
+# for stable choose 3.13.0.788
+ENV VERSION_ReHLDS=master
+
+# for stable choose 5.26.0.668
+ENV VERSION_ReGameDLL_CS=master
+
+# for stable choose 1.3.0.149
+ENV VERSION_Metamod=master
+
+# for stable choose 2.4.3
+ENV VERSION_ReSemiclip=master
+
+# for stable choose 0.2.0.13
+ENV VERSION_ReUnion=master
+
+# for stable choose 1.9-dev (TODO: probably not working without fixes)
+ENV VERSION_AMXModX=master
+
+# for stable choose 5.24.0.300
+ENV VERSION_ReAPI=master
+
+# for stable choose v2.1.0
+ENV VERSION_ReVoice=main
+
+# for stable choose 1.1.4
+ENV VERSION_HitboxFixer=master
+
+
+
+# Set non-interactive mode for APT to avoid prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN dpkg --add-architecture i386
+
+# Fix warning:
+# WARNING: setlocale('en_US.UTF-8') failed, using locale: 'C'.
+# International characters may not work.
+RUN apt-get -y update && apt-get install -y --no-install-recommends \
+    locales \
+ && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
+
+# Install required dependencies
+RUN apt-get install -y --no-install-recommends \
+    #establishing secure connections to webservers
+    ca-certificates \
+    #for downloading from web
+    curl \
+    #dependency of hlds / steam - if lib32gcc-s1 not found try lib32gcc1
+    lib32gcc-s1 \
+    gcc-multilib \
+    g++-multilib \
+    #unzip files...
+    unzip \
+    xz-utils \
+    zip \
+    #debugger for crash logs (dependency of hlds if u want crash log)
+    gdb \
+    #dependency of amxmodx compile.sh for sma in /scripting
+    less \
+    #compiling
+    build-essential \
+    git \
+    cmake \
+    libc6-dev \
+    libc6-i386 \
+    libc6-dev-i386 \
+    gcc \
+    g++ \
+    clang \
+    nasm \
+    rsync \
+    #ia32-libs \
+    lib32z1 \
+    lib32z1-dev \
+    python3 \
+    python3-setuptools \
+    ninja-build \
+ && apt-get -y autoremove \
+ && rm -rf /var/lib/apt/lists/*
+
+
+
+
+
+###########################################################
+### ReHLDS
+WORKDIR /opt/ReHLDS
+RUN git clone --depth 1 --branch ${VERSION_ReHLDS} https://github.com/rehlds/ReHLDS.git .
+
+# build
+RUN ./build.sh --compiler=gcc
+
+# move built files to publish directory so its same structure like in official zip
+RUN mkdir -p publish/bin/linux32/valve/dlls \
+    && mv build/rehlds/engine_i486.so publish/bin/linux32/engine_i486.so \
+    && mv rehlds/version/appversion.h publish/appversion.h \
+    && mv build/rehlds/dedicated/hlds_linux publish/bin/linux32/hlds_linux \
+    && mv build/rehlds/HLTV/Console/hltv publish/bin/linux32/hltv \
+    && mv build/rehlds/HLTV/Core/core.so publish/bin/linux32/core.so \
+    && mv build/rehlds/HLTV/Proxy/proxy.so publish/bin/linux32/proxy.so \
+    && mv build/rehlds/HLTV/DemoPlayer/demoplayer.so publish/bin/linux32/demoplayer.so \
+    && mv build/rehlds/HLTV/Director/director.so publish/bin/linux32/valve/dlls/director.so \
+    && mv build/rehlds/filesystem/FileSystem_Stdio/filesystem_stdio.so publish/bin/linux32/filesystem_stdio.so
+
+
+
+###########################################################
+### ReGameDLL_CS
+WORKDIR /opt/ReGameDLL_CS
+RUN git clone --depth 1 --branch ${VERSION_ReGameDLL_CS} https://github.com/rehlds/ReGameDLL_CS.git .
+
+# build
+RUN ./build.sh --compiler=gcc
+
+RUN mkdir -p publish/bin/linux32/cstrike/dlls \
+    && mv build/regamedll/cs.so publish/bin/linux32/cstrike/dlls/cs.so 2>/dev/null || true \
+    && mv regamedll/version/appversion.h publish/appversion.h \
+    && mv dist/ publish/
+
+
+
+###########################################################
+### Metamod-R
+WORKDIR /opt/Metamod-R
+RUN git clone --depth 1 --branch ${VERSION_Metamod} https://github.com/rehlds/Metamod-R.git .
+
+# build
+RUN ./build.sh --compiler=gcc
+
+RUN mkdir -p publish/addons/metamod \
+    && mv build/metamod/metamod_i386.so publish/addons/metamod/metamod_i386.so \
+    && mv metamod/version/appversion.h publish/appversion.h
+
+
+
+###########################################################
+### ReSemiclip
+WORKDIR /opt/ReSemiclip
+RUN git clone --depth 1 --branch ${VERSION_ReSemiclip} https://github.com/rehlds/resemiclip.git .
+
+# build
+RUN ./build.sh --compiler=gcc
+
+RUN mkdir -p publish/addons/resemiclip \
+    && rsync -a dist/ publish/addons/resemiclip/ \
+    && mv build/resemiclip_mm_i386.so publish/addons/resemiclip/resemiclip_mm_i386.so
+
+
+
+
+###########################################################
+### ReUnion
+WORKDIR /opt/ReUnion
+RUN git clone --depth 1 --branch ${VERSION_ReUnion} https://github.com/rehlds/ReUnion.git .
+
+# build
+RUN ./build.sh --compiler=gcc
+
+RUN mkdir -p publish/bin/Linux \
+    && rsync -a reunion/dist/ publish/ --exclude=*.tpl \
+    && rsync -a reunion/src/reunion_api.h publish/public/ \
+    && rsync -a reunion/extra/ publish/amxx/ \
+    && mv build/reunion/reunion_mm_i386.so publish/bin/Linux/reunion_mm_i386.so
+
+
+
+
+###########################################################
+### AMX Mod X
+WORKDIR /opt/AMXModX
+RUN git clone --recursive --depth 1 --branch ${VERSION_AMXModX} https://github.com/alliedmodders/amxmodx.git
+
+# get deps
+RUN git clone --depth 1 https://github.com/alliedmodders/metamod-hl1
+RUN git clone --depth 1 https://github.com/alliedmodders/hlsdk
+RUN git clone --depth 1 https://github.com/alliedmodders/ambuild
+WORKDIR /opt/AMXModX/ambuild
+RUN python3 setup.py install
+
+WORKDIR /opt/AMXModX
+RUN amxmodx/support/checkout-deps.sh
+
+#fix compiler error
+WORKDIR /opt/AMXModX/amxmodx
+RUN sed "207a '-Wno-error=misleading-indentation'," AMBuildScript > temp && mv temp AMBuildScript
+RUN sed "207a '-Wno-return-local-addr'," AMBuildScript > temp && mv temp AMBuildScript
+#RUN sed "207a '-Wno-error=use-after-free'," AMBuildScript > temp && mv temp AMBuildScript
+
+RUN mkdir /opt/AMXModX/amxmodx/build
+WORKDIR /opt/AMXModX/amxmodx/build
+RUN python3 ../configure.py --enable-optimize --symbol-files --disable-auto-versioning
+
+RUN ambuild
+
+RUN mkdir /opt/AMXModX/publish/
+RUN rsync -a /opt/AMXModX/amxmodx/build/packages/base/ /opt/AMXModX/publish/
+RUN rsync -a /opt/AMXModX/amxmodx/plugins/include/ /opt/AMXModX/publish/addons/amxmodx/scripting/include/
+RUN rsync -a /opt/AMXModX/amxmodx/build/packages/cstrike/ /opt/AMXModX/publish/
+
+
+
+###########################################################
+### ReAPI
+WORKDIR /opt/ReAPI
+RUN git clone --depth 1 --branch ${VERSION_ReAPI} https://github.com/rehlds/ReAPI.git .
+
+# build
+RUN ./build.sh --compiler=gcc
+
+RUN mkdir -p publish/addons/amxmodx/modules \
+    && rsync -a reapi/extra/amxmodx/ publish/addons/amxmodx/ \
+    && rsync -a reapi/version/reapi_version.inc publish/addons/amxmodx/scripting/include/ \
+    && mv build/reapi/reapi_amxx_i386.so publish/addons/amxmodx/modules/reapi_amxx_i386.so
+
+
+
+
+###########################################################
+### ReVoice
+WORKDIR /opt/ReVoice
+RUN git clone --depth 1 --branch ${VERSION_ReVoice} https://github.com/Garey27/revoice-plus.git .
+RUN mkdir /opt/ReVoice/build
+WORKDIR /opt/ReVoice/build
+RUN cmake -DCMAKE_TOOLCHAIN_FILE=../linux-i686.cmake ..
+RUN cmake ..
+RUN rm /opt/ReVoice/build/CMakeFiles/revoice_plus.dir/link.txt
+COPY ./install/link.txt /opt/ReVoice/build/CMakeFiles/revoice_plus.dir/link.txt
+RUN make
+RUN mv /opt/ReVoice/out /opt/ReVoice/publish
+
+
+
+
+###########################################################
+### HitboxFixer
+WORKDIR /opt/HitboxFixer
+RUN git clone --depth 1 --branch ${VERSION_HitboxFixer} https://github.com/Garey27/hitbox_fixer.git .
+RUN cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+RUN cmake --build build --config Release --parallel
+RUN mv build/bin/ publish && cp dist/* publish
+
+
+
+
+###########################################################
+### Steam & HLDS
+# create user and group
+RUN groupadd -r steam && useradd -r -g steam -m -d /opt/steam steam
+
+# switch to userspace and workspace
+USER steam
+WORKDIR /opt/steam
+#SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+#copy install script for steam hlds
+COPY ./install/hlds.install /opt/steam
+
+# Install hlds from Steam
+RUN curl -sqL "$steamcmd_url" | tar xzvf - \
+    && ./steamcmd.sh +runscript hlds.install
+
+# Fix error that steamclient.so is missing
+RUN mkdir -p "$HOME/.steam" \
+    && ln -s /opt/steam/linux32 "$HOME/.steam/sdk32"
+
+# Fix warnings:
+# couldn't exec listip.cfg
+# couldn't exec banned.cfg
+RUN touch /opt/steam/hlds/cstrike/listip.cfg
+RUN touch /opt/steam/hlds/cstrike/banned.cfg
+
+# fix truncated crash logs
+#RUN sed -i 's/ulimit -c 2000/ulimit -c unlimited/' /opt/steam/hlds/hlds_run
+
+
+
+#debug RUN /bin/bash

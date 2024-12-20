@@ -1,0 +1,27 @@
+[ru]
+DESC_MAX_AFK_WARNS 	= Максимальное количество предупреждений перед переводом в наблюдатели
+DESC_MAX_SPEC_WARNS 	= Максимальное количество предупреждений перед удалением игрока с сервера
+DESC_MIN_SPEC_PLRS 	= Минимальное количество игроков для проверок наблюдателей
+DESC_TIME_AFK_CHECK 	= Интервал проверки AFK игроков
+DESC_TIME_SPEC_CHECK 	= Интервал проверки наблюдателей
+DESC_IMMUNITY_FLAGS 	= Иммунитет к функциям плагина
+DESC_TRANSFER_BOMB	= Передавать бомбу другому игроку или нет
+MSG_TRANSFER_PLAYER 	= ^4Игрок ^3%n ^4был перемещен в зрители, так как был ^3AFK
+MSG_TRANSFER_BOMB 	= ^4У игрока ^3%n ^4отобрана бомбу, так как находится ^3AFK
+MSG_PLAYER_CHECK_ACTIVITY = ^4Вы не проявляете активность! Предупреждения: ^3%i/%i
+MSG_KICK_SPEC_REASON 	= ^4Игрок ^3%n ^4удален за длительное нахождение в зрителях
+MSG_KICK_PLAYER_REASON 	= Вы были кикнуты из-за длительного нахождения в зрителях
+
+[en]
+DESC_MAX_AFK_WARNS     	= Maximum number of warnings before transferring to spectators
+DESC_MAX_SPEC_WARNS     = Maximum number of warnings before removing a player from the server
+DESC_MIN_SPEC_PLRS     	= Minimum number of players for spectators checks
+DESC_TIME_AFK_CHECK     = AFK Player Checkout Interval
+DESC_TIME_SPEC_CHECK	= Spectators check interval
+DESC_IMMUNITY_FLAGS     = Plugin immunity
+DESC_TRANSFER_BOMB    	= Pass the bomb to another player or not
+MSG_TRANSFER_PLAYER     = ^4Player ^3%n ^4was moved to spectators, since he/she was ^3AFK
+MSG_TRANSFER_BOMB     	= ^4Player ^3%n ^4got the bomb, since player with C4 was ^3AFK
+MSG_PLAYER_CHECK_ACTIVITY = ^4You are not active! Alerts: ^3%i/%i
+MSG_KICK_SPEC_REASON	= ^4Player ^3%n ^4Kicked for being AFK for a long time
+MSG_KICK_PLAYER_REASON	= You were kicked for being AFK for a long time
