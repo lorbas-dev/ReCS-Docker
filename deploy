@@ -16,7 +16,7 @@ RUN cp /opt/Metamod-R/publish/addons/metamod/metamod_i386.so /opt/steam/hlds/cst
 RUN sed -i 's/dlls\/cs\.so/addons\/metamod\/metamod_i386.so/g' /opt/steam/hlds/cstrike/liblist.gam
 
 # ReSemiclip
-RUN rsync -a /opt/ReSemiclip/publish/addons/ /opt/steam/hlds/cstrike/addons/resemiclip
+RUN rsync -a /opt/ReSemiclip/publish/addons/ /opt/steam/hlds/cstrike/addons/
 RUN echo 'linux addons/resemiclip/resemiclip_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
 
 # ReUnion
