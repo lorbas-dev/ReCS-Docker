@@ -215,7 +215,7 @@ RUN rsync -a /opt/AMXModX/amxmodx/build/packages/cstrike/ /opt/AMXModX/publish/
 ###########################################################
 ### ReAPI
 WORKDIR /opt/ReAPI
-RUN git clone 1 --branch ${VERSION_ReAPI} https://github.com/rehlds/ReAPI.git .
+RUN git clone --branch ${VERSION_ReAPI} https://github.com/rehlds/ReAPI.git .
 
 # build
 RUN ./build.sh --compiler=gcc
@@ -231,7 +231,7 @@ RUN mkdir -p publish/addons/amxmodx/modules \
 ###########################################################
 ### ReVoice
 WORKDIR /opt/ReVoice
-RUN git clone 1 --branch ${VERSION_ReVoice} https://github.com/Garey27/revoice-plus.git .
+RUN git clone --branch ${VERSION_ReVoice} https://github.com/Garey27/revoice-plus.git .
 RUN mkdir /opt/ReVoice/build
 WORKDIR /opt/ReVoice/build
 RUN cmake -DCMAKE_TOOLCHAIN_FILE=../linux-i686.cmake ..
@@ -247,7 +247,7 @@ RUN mv /opt/ReVoice/out /opt/ReVoice/publish
 ###########################################################
 ### HitboxFixer
 WORKDIR /opt/HitboxFixer
-RUN git clone 1 --branch ${VERSION_HitboxFixer} https://github.com/Garey27/hitbox_fixer.git .
+RUN git clone --branch ${VERSION_HitboxFixer} https://github.com/Garey27/hitbox_fixer.git .
 RUN cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build build --config Release --parallel
 RUN mv build/bin/ publish && cp dist/* publish
