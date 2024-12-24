@@ -135,7 +135,7 @@ RUN mkdir -p publish/bin/linux32/cstrike/dlls \
 ###########################################################
 ### Metamod-R
 WORKDIR /opt/Metamod-R
-RUN git clone 1 --branch ${VERSION_Metamod} https://github.com/rehlds/Metamod-R.git .
+RUN git clone --branch ${VERSION_Metamod} https://github.com/rehlds/Metamod-R.git .
 
 # build
 RUN ./build.sh --compiler=gcc
