@@ -38,15 +38,6 @@ RUN rsync -a /opt/HitboxFixer/publish/ /opt/steam/hlds/cstrike/addons/hitboxfixe
 RUN echo 'linux addons/hitboxfixer/hitbox_fix_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
 
 
-#### Install Plugins from repo
-# SpeedRun Detector
-#RUN echo 'linux addons/resrdetector/resrdetector_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
-# WH Blocker
-#RUN echo 'linux addons/whblocker/whblocker_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
-# Yapb Bot
-#RUN echo 'linux addons/yapb/bin/yapb.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
-
-
 # AMX Mod X
 RUN rsync -a /opt/AMXModX/publish/addons/ /opt/steam/hlds/cstrike/addons/
 RUN echo 'linux addons/amxmodx/dlls/amxmodx_mm_i386.so' >> /opt/steam/hlds/cstrike/addons/metamod/plugins.ini
@@ -59,15 +50,19 @@ RUN rsync -a /opt/ReAPI/publish/addons/amxmodx/ /opt/steam/hlds/cstrike/addons/a
 RUN echo 'reapi' >> /opt/steam/hlds/cstrike/addons/amxmodx/configs/modules.ini
 
 
-
-# switch to userspace and workspace
 WORKDIR /opt/steam/hlds
-RUN chown -R steam:steam .
-USER steam
 
-# Copy default config
+# move original amxx plugins, so their names wont be duplcated in the plugins.ini
+RUN mkdir cstrike/addons/amxmodx/scripting/original/
+RUN mv cstrike/addons/amxmodx/scripting/*.sma cstrike/addons/amxmodx/scripting/original/
+
+
+# Copy user data
 COPY --chmod=0755 --chown=steam:steam cstrike cstrike
 
+# switch to user and set permissions
+RUN chown -R steam:steam .
+USER steam
 
 
 # compile SMA's
@@ -75,6 +70,8 @@ WORKDIR /opt/steam/hlds/cstrike/addons/amxmodx/scripting
 RUN ./compile.sh
 RUN chmod +x compiled/*
 RUN cp -rf compiled/* ../plugins/ 
+# add compiled plugin names to plugins.ini
+RUN find . -maxdepth 1 -type f -name "*.sma" -exec basename {} \; | sed 's/\.sma$/\.amxx/' >> "../configs/plugins.ini"
 
 WORKDIR /opt/steam/hlds
 RUN chmod +x hlds_run hlds_linux

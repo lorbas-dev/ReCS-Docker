@@ -98,7 +98,7 @@ RUN apt-get install -y --no-install-recommends \
 ###########################################################
 ### ReHLDS
 WORKDIR /opt/ReHLDS
-RUN git clone --depth 1 --branch ${VERSION_ReHLDS} https://github.com/rehlds/ReHLDS.git .
+RUN git clone --branch ${VERSION_ReHLDS} https://github.com/rehlds/ReHLDS.git .
 
 # build
 RUN ./build.sh --compiler=gcc
@@ -120,7 +120,7 @@ RUN mkdir -p publish/bin/linux32/valve/dlls \
 ###########################################################
 ### ReGameDLL_CS
 WORKDIR /opt/ReGameDLL_CS
-RUN git clone --depth 1 --branch ${VERSION_ReGameDLL_CS} https://github.com/rehlds/ReGameDLL_CS.git .
+RUN git clone --branch ${VERSION_ReGameDLL_CS} https://github.com/rehlds/ReGameDLL_CS.git .
 
 # build
 RUN ./build.sh --compiler=gcc
@@ -135,7 +135,7 @@ RUN mkdir -p publish/bin/linux32/cstrike/dlls \
 ###########################################################
 ### Metamod-R
 WORKDIR /opt/Metamod-R
-RUN git clone --depth 1 --branch ${VERSION_Metamod} https://github.com/rehlds/Metamod-R.git .
+RUN git clone 1 --branch ${VERSION_Metamod} https://github.com/rehlds/Metamod-R.git .
 
 # build
 RUN ./build.sh --compiler=gcc
@@ -149,7 +149,7 @@ RUN mkdir -p publish/addons/metamod \
 ###########################################################
 ### ReSemiclip
 WORKDIR /opt/ReSemiclip
-RUN git clone --depth 1 --branch ${VERSION_ReSemiclip} https://github.com/rehlds/resemiclip.git .
+RUN git clone --branch ${VERSION_ReSemiclip} https://github.com/rehlds/resemiclip.git .
 
 # build
 RUN ./build.sh --compiler=gcc
@@ -164,7 +164,7 @@ RUN mkdir -p publish/addons/resemiclip \
 ###########################################################
 ### ReUnion
 WORKDIR /opt/ReUnion
-RUN git clone --depth 1 --branch ${VERSION_ReUnion} https://github.com/rehlds/ReUnion.git .
+RUN git clone --branch ${VERSION_ReUnion} https://github.com/rehlds/ReUnion.git .
 
 # build
 RUN ./build.sh --compiler=gcc
@@ -181,7 +181,7 @@ RUN mkdir -p publish/bin/Linux \
 ###########################################################
 ### AMX Mod X
 WORKDIR /opt/AMXModX
-RUN git clone --recursive --depth 1 --branch ${VERSION_AMXModX} https://github.com/alliedmodders/amxmodx.git
+RUN git clone --recursive --branch ${VERSION_AMXModX} https://github.com/alliedmodders/amxmodx.git
 
 # get deps
 RUN git clone --depth 1 https://github.com/alliedmodders/metamod-hl1
@@ -215,7 +215,7 @@ RUN rsync -a /opt/AMXModX/amxmodx/build/packages/cstrike/ /opt/AMXModX/publish/
 ###########################################################
 ### ReAPI
 WORKDIR /opt/ReAPI
-RUN git clone --depth 1 --branch ${VERSION_ReAPI} https://github.com/rehlds/ReAPI.git .
+RUN git clone 1 --branch ${VERSION_ReAPI} https://github.com/rehlds/ReAPI.git .
 
 # build
 RUN ./build.sh --compiler=gcc
@@ -231,7 +231,7 @@ RUN mkdir -p publish/addons/amxmodx/modules \
 ###########################################################
 ### ReVoice
 WORKDIR /opt/ReVoice
-RUN git clone --depth 1 --branch ${VERSION_ReVoice} https://github.com/Garey27/revoice-plus.git .
+RUN git clone 1 --branch ${VERSION_ReVoice} https://github.com/Garey27/revoice-plus.git .
 RUN mkdir /opt/ReVoice/build
 WORKDIR /opt/ReVoice/build
 RUN cmake -DCMAKE_TOOLCHAIN_FILE=../linux-i686.cmake ..
@@ -247,7 +247,7 @@ RUN mv /opt/ReVoice/out /opt/ReVoice/publish
 ###########################################################
 ### HitboxFixer
 WORKDIR /opt/HitboxFixer
-RUN git clone --depth 1 --branch ${VERSION_HitboxFixer} https://github.com/Garey27/hitbox_fixer.git .
+RUN git clone 1 --branch ${VERSION_HitboxFixer} https://github.com/Garey27/hitbox_fixer.git .
 RUN cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build build --config Release --parallel
 RUN mv build/bin/ publish && cp dist/* publish

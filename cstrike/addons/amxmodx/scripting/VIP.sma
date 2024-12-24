@@ -382,9 +382,9 @@ public hook_death()
 		// Hud message "Healed +15/+30 hp"
 		if(nKiller_hp < nHp_max)
 		{
-			format(hp_added, sizeof(hp_added), "%L", nKiller, "HP_ADDED")
+			format(hp_added, sizeof(hp_added), "%L", nKiller, "HP_ADDED", nHp_add)
 			set_hudmessage(0, 255, 0, -1.0, 0.15, 0, 1.0, 1.0, 0.1, 0.1, -1)
-			show_hudmessage(nKiller, hp_added, nHp_add)
+			show_hudmessage(nKiller, hp_added)
 		}
 		// Screen fading
 		if(!get_user_flashed(nKiller)) //Checks if user is not flashed
